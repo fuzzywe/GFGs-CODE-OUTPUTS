@@ -1,0 +1,48 @@
+
+
+
+Let's walk through the code:
+
+Code Explanation:
+
+1. int n;: Declares an integer variable n.
+
+
+2. for(n = 7; n != 0; n--): This loop initializes n to 7 and decrements it (n--) each iteration, continuing as long as n is not equal to 0.
+
+
+3. printf("n = %d", n--);: Inside the loop, n is printed and then decremented again within the printf statement.
+
+So in each iteration, n will be decremented twice: once inside the loop condition and once in the printf function.
+
+
+
+4. getchar();: This waits for the user to press a key before the program exits.
+
+
+5. return 0;: The program ends successfully.
+
+
+
+Step-by-Step Execution:
+
+Initially, n = 7.
+
+The loop will print the value of n and decrement it by 2 because of the double decrement (n-- inside the loop and inside printf).
+
+Let's see what happens in each iteration:
+
+
+Output:
+
+n = 7n = 5n = 3n = 1
+
+The loop terminates when n becomes 0.
+
+Key Observations:
+
+The value of n is decremented twice in each loop iteration.
+
+The program prints 7, 5, 3, and 1 before the loop stops.
+
+
