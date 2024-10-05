@@ -202,3 +202,136 @@ Does this detailed explanation with visuals and a step-by-step call stack make i
 0 0 0 0 
 
 === Code Execution Successful ===
+
+```c
+#include<stdio.h>
+int main()
+{
+	static int var = 5;
+	printf("%d ",var--);
+	if(var)
+		main();				 
+}
+```
+Output
+5 4 3 2 1 
+ 
+Explanation: Same as previous question. The only difference here is, sequence of calling main and printf is changed, therefore different output.
+Question 4 
+  ```c
+#include<stdio.h>
+int main()
+{
+    int x;
+    printf("%d",scanf("%d",&x)); 
+    /* Suppose that input value given 
+        for above scanf is 20 */
+    return 1;
+} 
+Output
+1
+scanf returns the no. of inputs it has successfully read.
+```
+The `%d` format specifier in C is crucial for several reasons, particularly when working with functions like `printf` and `scanf`. Let’s break down its significance in the context of both functions:
+
+### 1. **Purpose of `%d` in `scanf`**
+
+- **Input Specification**: When you use `scanf` with the format specifier `%d`, you are telling the function to expect an integer input from the user. This informs `scanf` to interpret the input characters as a decimal integer.
+  
+  ```c
+  scanf("%d", &x);
+  ```
+
+- **Memory Storage**: The `%d` format specifier indicates that the function should convert the input to an integer and store it at the memory location pointed to by `&x`. Without `%d`, `scanf` wouldn’t know how to interpret the user’s input.
+
+- **Error Handling**: If the input provided by the user cannot be converted to an integer, `scanf` will not successfully read a value, returning `0`. This allows you to implement error handling based on the return value of `scanf`.
+
+### 2. **Purpose of `%d` in `printf`**
+
+- **Output Formatting**: When you use `printf` with `%d`, you specify that you want to print an integer value. This tells `printf` to format the variable you are passing as a decimal integer in the output.
+
+  ```c
+  printf("%d", x);
+  ```
+
+- **Data Representation**: The `%d` specifier ensures that the integer is printed in the correct format. If you were to use a different format specifier (like `%f` for floats or `%s` for strings), it would lead to undefined behavior or incorrect output.
+
+### Example Breakdown
+
+Here’s a complete example illustrating both uses of `%d`:
+
+```c
+#include <stdio.h>
+
+int main() {
+    int x;
+
+    // Using scanf to read an integer
+    printf("Enter an integer: ");
+    int result = scanf("%d", &x); // %d tells scanf to expect an integer
+    printf("scanf returned: %d\n", result); // Print how many values were read
+
+    // Using printf to output the integer
+    printf("You entered: %d\n", x); // %d tells printf to print x as an integer
+
+    return 0;
+}
+```
+
+### Explanation of the Example
+
+1. **Input Phase**:
+   - The user is prompted to enter an integer.
+   - The `scanf("%d", &x);` function call waits for user input.
+   - If the user enters `10`, `scanf` reads `10`, converts it to an integer, and stores it in `x`. It returns `1` (since one value was successfully read).
+
+2. **Output Phase**:
+   - The program then prints `scanf returned: 1`, indicating successful input.
+   - Finally, `printf("You entered: %d\n", x);` prints the value of `x`, formatted as an integer. Here, `%d` ensures that `10` is displayed correctly as `10`.
+
+### Summary
+
+- **Why Use `%d`?**
+  - It specifies that an integer is expected (in `scanf`).
+  - It ensures proper formatting when printing integers (in `printf`).
+  - It is essential for correctly interpreting and displaying numeric values.
+
+Using the correct format specifier is vital in C programming, as it dictates how data is read from or written to the console, ensuring that the program behaves as expected and reduces errors.
+
+```c
+Question 5 
+ 
+
+
+
+
+# include <stdio.h>
+int main()
+{
+   int i=0;
+   for(i=0; i<20; i++)
+   {
+     switch(i)
+     {
+       case 0:
+         i+=5;
+       case 1:
+         i+=2;
+       case 5:
+         i+=5;
+       default:               
+         i+=4;
+         break;
+     }
+     printf("%d  ", i);
+   }
+ 
+   getchar();
+   return 0;
+}   
+Output
+16  21  
+Explanation: 
+Initially i = 0. Since case 0 is true i becomes 5, and since there is no break statement till last statement of switch block, i becomes 16. Before starting the next iteration, i becomes 17 due to i++. Now in next iteration no case is true, so execution goes to default and i becomes 21.
+In C, if one case is true switch block is executed until it finds break statement. If no break statement is present all cases are executed after the true case. If you want to know why switch is implemented like this, well this implementation is useful for situations like below.
+```
