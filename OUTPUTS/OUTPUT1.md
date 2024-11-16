@@ -8,6 +8,19 @@ int main() {
    return 0;
 }
 ```
+
+
+```c
+#include<stdio.h>
+int main()
+{
+   printf("%x", -1<<1);
+   getchar();
+   return 0;
+}
+
+
+```
 In this code, you're performing a bitwise left shift on the value `-1`. Let's break it down step by step:
 
 ### Code Explanation:
