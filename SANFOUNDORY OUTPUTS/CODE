@@ -1,0 +1,63 @@
+Let's break down the issue with the code step-by-step:
+
+The C code in question is:
+
+#include <stdio.h>
+void main()
+{
+    1 < 2 ? return 1 : return 2;
+}
+
+1. Ternary Conditional Operator:
+
+The ternary conditional operator in C is used for conditional expressions. It follows this structure:
+
+condition ? expression1 : expression2;
+
+If condition is true, it evaluates and returns expression1.
+
+If condition is false, it evaluates and returns expression2.
+
+
+In your case, the condition is 1 < 2, which is true. So, the ternary operator will attempt to execute return 1 (since 1 < 2 is true).
+
+2. Issue with return Inside the Ternary Operator:
+
+The problem arises because the ternary operator expects expressions on both sides (before and after the colon :). However, return is a statement, not an expression. In C, a statement (like return) cannot be used as part of an expression (like those in a ternary operator).
+
+A statement is something that performs an action (such as return, printf, etc.), while an expression is something that produces a value.
+
+3. What Happens in Your Code:
+
+In this code:
+
+1 < 2 ? return 1 : return 2;
+
+1 < 2 evaluates to true, so it tries to execute return 1.
+
+However, return 1 is a statement, not an expression. The ternary operator is expecting an expression, so the use of return inside the ternary operator causes a compile-time error.
+
+
+4. Conclusion:
+
+In summary, the C compiler will throw an error because the ternary operator is being misused with return, which is a statement and not an expression.
+
+Correct Version:
+
+If you want to use a conditional statement with return, you should avoid using the ternary operator. Instead, use a regular if-else statement:
+
+#include <stdio.h>
+void main()
+{
+    if (1 < 2)
+        return 1;
+    else
+        return 2;
+}
+
+This version is valid because the return statements are used as part of control flow, not inside the ternary operator.
+
+Final Answer:
+
+d) Compile time error
+
